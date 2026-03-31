@@ -15,7 +15,7 @@ class QRCodeInvoice(models.Model):
     qr_image = fields.Binary("QR Code", compute='_generate_qr_code')
 
 #    @api.one
-    def _generate_qr_code(self):
+    def _generate_qr_code(self, silent_errors=False):
         service = 'BCD'
 		#Check if BIC exists: version 001 = BIC, 002 = no BIC
         if self.company_id.iban_qr_number.bank_id.bic:
